@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSmart Investor Deck - See what's ahead</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2a3a 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 4rem;
+            position: relative;
+        }
+        
+        .slide-number {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.5;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #00d4ff;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #4db8ff;
+        }
+        
+        p, li {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #e0e0e0;
+        }
+        
+        .highlight {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+        
+        .emphasis {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #00ffcc;
+            margin: 2rem 0;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: #b0b0b0;
+        }
+        
+        .problem-box {
+            background: rgba(255, 100, 100, 0.1);
+            border-left: 4px solid #ff6464;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        
+        .opportunity-box {
+            background: rgba(100, 255, 100, 0.1);
+            border-left: 4px solid #64ff64;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        
+        .solution-box {
+            background: rgba(0, 212, 255, 0.1);
+            border-left: 4px solid #00d4ff;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+        }
+        
+        ul {
+            list-style: none;
+            margin-left: 1rem;
+        }
+        
+        li::before {
+            content: "▸ ";
+            color: #00d4ff;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 2rem 0;
+        }
+        
+        .case-study {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem 0;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00d4ff 0%, #00ffcc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-top: 1rem;
+        }
+        
+        .architecture-diagram {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .flow-arrow {
+            font-size: 2rem;
+            color: #00d4ff;
+            margin: 1rem 0;
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 2rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .two-col {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- SLIDE 1: TITLE -->
+<div class="slide">
+    <div class="slide-number">1</div>
+    <div class="logo">
+        <div class="logo-text">CSmart - Seeing what's ahead</div>
+        <div class="subtitle">Generative Collective Intelligence</div>
+    </div>
+    <center><h1>Human-AI Intelligence Amplification</h1></center>
+    <center><h2>AI for Collaborative Learning </h2></center>
+        <center> <h2>Delivering Cumulative Intelligence</h2></center>
+    <center><p class="emphasis">Orchestrating human and AI agent collaboration to unlock breakthrough innovation, build trust, and create unique competitive advantage</p></center>
+    <center><p class="emphasis">Fundamental hythothesis --> If you know the internal beliefs of an individual or group, you are able to predict future outcomes with superior accuracy/p></center>
+</div>
+
+<!-- SLIDE 2: THE PROBLEM -->
+<div class="slide">
+    <div class="slide-number">2</div>
+    <h2>The Problem: Aligning for Action - Choosing the right path forward</h2>
+    
+    <div class="problem-box">
+        <h3>Finding alignment and making the right decision is hard</h3>
+        <h3>Can AI help or is it yet another complexity to deal with?</h3>
+        <p>Some are cutting thousands of jobs trying to "reorganize for AI." Others are frozen.</p>
+    </div>
+    
+    <div class="stat-grid">
+        <div class="stat-card">
+            <div class="stat-number">91%</div>
+            <div class="stat-label">of executives admit their organizations are NOT prepared to implement AI safely and responsibly (McKinsey)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">identify explainability as a key risk, yet only 17% are working to mitigate it</div>
+        </div>
+    </div>
+    
+    <ul>
+        <li><strong>Training costs are prohibitively expensive</strong> and existing data sources are being exhausted</li>
+        <li><strong>Results sound plausible but aren't inherently trustworthy</strong> (hallucinations, lack of causal reasoning)</li>
+        <li><strong>Proprietary corporate data is being exposed</strong> in the wild</li>
+        <li><strong>AI agents are being introduced without understanding how to control their actions</strong></li>
+        <li><strong>Everyone has access to the same tools</strong> — how do you differentiate?</li>
+    </ul>
+</div>
+
+<!-- SLIDE 3: THE BOTTLENECK -->
+<div class="slide">
+    <div class="slide-number">3</div>
+    <h2>The Real Bottleneck Isn't AI—It's Human Collaboration</h2>
+    <h3>In the vision of the Agentic Future no one is addressing the costs of coordination</h3>
+    
+    <p class="emphasis">As AI agents proliferate and uncertainty accelerates, <span class="highlight">humans must collectively decide what to do with what AI produces</span>.</p>
+    
+    <div class="problem-box">
+        <h3>Traditional collaboration doesn't scale</h3>
+        <ul>
+            <li>85% of organizational time is spent collaborating</li>
+            <li>Yet only <span class="highlight">7% of teams fully understand their company's strategy</span></li>
+            <li>Meetings become unwieldy beyond 12-15 people</li>
+            <li>20 people = 190 lines of communication to manage</li>
+            <li>100 people = 4,950 lines of communication</li>
+            <li>Politics dominate outcomes, deep insights from throughout the organization never surface</li>
+            <li>Knowledge disappears when people leave</li>
+        </ul>
+    </div>
+    
+    <p class="emphasis">The challenge: How do you listen to everyone, surface the best ideas, build alignment, and create institutional memory—at scale?</p>
+</div>
+
+<!-- SLIDE 4: THE OPPORTUNITY -->
+<div class="slide">
+    <div class="slide-number">4</div>
+    <h2>The Untapped Opportunity: Next Generation AI That Orchestrates Human Collaboration</h2>
+    
+    <div class="opportunity-box">
+        <h3>What if AI could orchestrate how humans (and AI agents) reason together?</h3>
+        
+        <p>Every organization has stakeholders—employees, partners, customers—whose <span class="highlight">collaborative actions uniquely propel the organization forward</span> every day.</p>
+        
+        <p class="emphasis">But the challenges of orchestrating collaboration are exactly what AI excels at solving.</p>
+    </div>
+    
+    <h3>Nextgen AI can empower organizations to:</h3>
+    <ul>
+        <li><strong>Listen in parallel to unlimited participants</strong> and optimize for diversity of thought</li>
+        <li><strong>Surface actionable paths forward</strong> that resonate with the entire group</li>
+        <li><strong>Generate dynamic, private knowledge models</strong> from stakeholder interactions</li>
+        <li><strong>Build cultures of loyalty and trust</strong> through authentic participation</li>
+        <li><strong>Retain queryable institutional memory</strong> that accelerates learning</li>
+        <li><strong>Create unique competitive advantage</strong> that can't be replicated by generic LLMs</li>
+    </ul>
+</div>
+
+<!-- SLIDE 5: THE SOLUTION -->
+<div class="slide">
+    <div class="slide-number">5</div>
+    <h2>The Solution: Generative Collective Intelligence</h2>
+    
+    <div class="solution-box">
+        <h3>GCI is a breakthrough AI architecture that orchestrates collective human and agent cognition</h3>
+        <p>CSmart integrates algorithmic innovations with transformer technology in fundamentally new ways, protected by four substantial patents linking LLMs to automated knowledge acquisition.</p>
+    </div>
+    
+    <h3>The CSmart Breakthrough:</h3>
+    
+    <div class="two-col">
+        <div>
+            <h3>🔓 Breaks Brooks' Law</h3>
+            <p>Traditional collaboration: <span class="highlight">O(n²)</span> complexity</p>
+            <p class="flow-arrow">↓</p>
+            <p>CSmart: <span class="highlight">O(n log n)</span> complexity</p>
+            <ul>
+                <li>20 people in 20 minutes</li>
+                <li>Scales to 200, 2,000, or 20,000</li>
+                <li>Time stays constant at ~15 minutes</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3>🎯 Key Innovations</h3>
+            <ul>
+                <li><strong>AI-mediated simultaneous contribution</strong> + Bayesian sampling</li>
+                <li><strong>Identity-blind evaluation</strong> to eliminate bias</li>
+                <li><strong>Collective Reasoning Agent</strong> that orchestrates diverse perspectives</li>
+                <li><strong>Persistent Bayesian Belief Networks</strong> capture causal reasoning</li>
+                <li><strong>Private LLMs</strong> generated from deliberations</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- SLIDE 6: HOW IT WORKS -->
+<div class="slide">
+    <div class="slide-number">6</div>
+    <h2>How It Works: The User Experience</h2>
+    
+    
+    </div>
+</div>
+
+
+<!-- SLIDE 7: HOW IT WORKS -->
+<div class="slide">
+    <div class="slide-number">7</div>
+    <h2>How It Works: The User Experience</h2>
+    
+    <div class="architecture-diagram">
+        <h3>Agent-Interface-Environment Architecture</h3>
+        
+        <div style="margin: 2rem 0;">
+            <div style="display: inline-block; padding: 1rem 2rem; background: rgba(100, 255, 100, 0.2); border-radius: 10px; margin: 0.5rem;">
+                <strong>Human Participants</strong><br>
+                Contribute ideas, assessments, expertise
+            </div>
+            
+            <div style="display: inline-block; padding: 1rem 2rem; background: rgba(100, 255, 255, 0.2); border-radius: 10px; margin: 0.5rem;">
+                <strong>AI Agents</strong><br>
+                Analyze, synthesize, identify patterns
+            </div>
+        </div>
+        
+        <div class="flow-arrow">↓</div>
+        
+        <div style="padding: 2rem; background: rgba(0, 212, 255, 0.2); border-radius: 15px; margin: 1rem 0;">
+            <h3>Collective Reasoning Agent (Interface Layer)</h3>
+            <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                <li>Orchestrates peer review and β-sampling</li>
+                <li>Manages identity-blind evaluation</li>
+                <li>Builds Bayesian Belief Networks</li>
+                <li>Generates private language models</li>
+                <li>Creates semantic embeddings in Hilbert space</li>
+            </ul>
+        </div>
+        
+        <div class="flow-arrow">↓</div>
+        
+        <div style="margin: 2rem 0;">
+            <div style="display: inline-block; padding: 1rem 2rem; background: rgba(255, 200, 100, 0.2); border-radius: 10px; margin: 0.5rem;">
+                <strong>Persistent Knowledge Models</strong><br>
+                Queryable, evolving institutional memory
+            </div>
+            
+            <div style="display: inline-block; padding: 1rem 2rem; background: rgba(255, 150, 255, 0.2); border-radius: 10px; margin: 0.5rem;">
+                <strong>Actionable Decisions</strong><br>
+                Clear priorities with full traceability
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 7: IT'S ALREADY WORKING -->
+<div class="slide">
+    <div class="slide-number">7</div>
+    <h2>It's Already Working: Proven at Scale</h2>
+    
+    <div class="case-study">
+        <h3>🏢 Alera Group: $1.4B Financial Services Transformation</h3>
+        <p><strong>Challenge:</strong> Integrate 180 acquired companies with 4,400 employees</p>
+        <p><strong>Solution:</strong> CSmart processed 400+ ideas from 54 participants</p>
+        <p><strong>Result:</strong> <span class="highlight">"10x the value for a fraction of the effort"</span> — grew to nation's 12th-largest independent insurance firm with demonstrable alignment</p>
+    </div>
+    
+    <div class="case-study">
+        <h3>🛡️ NATO Innovation Hub: Command & Control at Scale</h3>
+        <p><strong>Challenge:</strong> Complex, diverse military decision-making under uncertainty</p>
+        <p><strong>Solution:</strong> 100 participants generating 3,000 ideas</p>
+        <p><strong>Result:</strong> <span class="highlight">Radically accelerated decision-making</span> in high-stakes environment</p>
+    </div>
+    
+    <div class="case-study">
+        <h3>📊 Venture Investment: Predictive Intelligence</h3>
+        <p><strong>Challenge:</strong> Improve accuracy of startup investment decisions</p>
+        <p><strong>Solution:</strong> Expert communities assessing early-stage companies</p>
+        <p><strong>Result:</strong> <span class="highlight">>80% predictive accuracy</span>, >40% bias reduction</p>
+    </div>
+</div>
+
+<!-- SLIDE 8: CIVIC IMPACT -->
+<div class="slide">
+    <div class="slide-number">8</div>
+    <h2>Beyond Enterprise: Democratic & Civic Applications</h2>
+    
+    <p class="emphasis">GCI isn't just for corporations—it's restoring democracy's promise of genuine listening at scale</p>
+    
+    <div class="two-col">
+        <div class="case-study">
+            <h3>🏥 Ontario Healthcare</h3>
+            <p>1,508 citizens, 2,145 ideas, 1,256 collaborative interactions</p>
+            <p>Created actionable policy roadmap from <span class="highlight">authentic citizen voices</span>, not consultant summaries</p>
+        </div>
+        
+        <div class="case-study">
+            <h3>🌍 UN DRTC</h3>
+            <p>Global stakeholders addressing corporate sustainability and cultural unity</p>
+            <p>Synthesized diverse worldviews into <span class="highlight">coherent action frameworks</span></p>
+        </div>
+    </div>
+    
+    <div class="case-study">
+        <h3>🏛️ Municipal Governance: Sault Ste. Marie</h3>
+        <p>Citizens engaged in budget forecasting and healthcare planning</p>
+        <p><span class="highlight">Shared ownership over civic priorities</span> — foundation for sustained collaboration</p>
+    </div>
+    
+    <p class="emphasis">Every voice preserved, weighted by collective resonance—not volume or political power</p>
+</div>
+
+<!-- SLIDE 9: WHY GCI WINS -->
+<div class="slide">
+    <div class="slide-number">9</div>
+    <h2>Why GCI Succeeds Where Statistical AI Fails</h2>
+    
+    <div class="stat-grid">
+        <div class="stat-card">
+            <h3>🔍 Transparency</h3>
+            <p>Clear audit trail of how decisions are made and models evolve</p>
+        </div>
+        
+        <div class="stat-card">
+            <h3>📊 Attribution</h3>
+            <p>Traceability of individual contributions for accountability</p>
+        </div>
+        
+        <div class="stat-card">
+            <h3>💡 Explainability</h3>
+            <p>AI insights with clear causal reasoning—decisions grounded in understandable logic</p>
+        </div>
+        
+        <div class="stat-card">
+            <h3>🔄 Iterative Improvement</h3>
+            <p>Continuous feedback loops ensure systems learn from outcomes</p>
+        </div>
+    </div>
+    
+    <div class="two-col" style="margin-top: 3rem;">
+        <div>
+            <h3>❌ Current State: AI Only</h3>
+            <ul>
+                <li>Missing human cognition</li>
+                <li>Limited causal understanding</li>
+                <li>No context or judgment</li>
+                <li>Hallucinations & bias</li>
+                <li>Generic outputs</li>
+            </ul>
+        </div>
+        
+        <div>
+            <h3>✅ CSmart: See ahead with Human + AI Orchestration</h3>
+            <ul>
+                <li>Complete cognitive system</li>
+                <li>Causal understanding from humans</li>
+                <li>Context, ethics, judgment</li>
+                <li>Transparent reasoning</li>
+                <li>Proprietary competitive advantage</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- SLIDE 10: MARKET OPPORTUNITY -->
+<div class="slide">
+    <div class="slide-number">10</div>
+    <h2>Market Opportunity: Beyond Consulting</h2>
+    
+    <h3>Primary Target: $1+ Trillion Consulting Industry</h3>
+    <div class="opportunity-box">
+        <p>Management consulting, transformation services, innovation workshops—all disrupted by AI</p>
+        <ul>
+            <li><strong>Partnering with consultants</strong> to amplify their impact</li>
+            <li><strong>White labeling and licensing</strong> for consulting firms</li>
+            <li><strong>Open API model</strong> for integration into collaboration tools (Slack, Miro, etc.)</li>
+        </ul>
+    </div>
+    
+    <h3 style="margin-top: 2rem;">Broader Applications Across Every Industry:</h3>
+    <div class="stat-grid">
+        <div class="stat-card">
+            <h3>🏭 Enterprise</h3>
+            <p>Transformation, M&A, innovation, strategic alignment</p>
+        </div>
+        <div class="stat-card">
+            <h3>💰 Investment</h3>
+            <p>VC/PE due diligence, portfolio strategy, LP relations</p>
+        </div>
+        <div class="stat-card">
+            <h3>🎯 Marketing</h3>
+            <p>Customer co-creation, brand community, market research</p>
+        </div>
+        <div class="stat-card">
+            <h3>🏛️ Government</h3>
+            <p>Policy development, civic engagement, budget planning</p>
+        </div>
+        <div class="stat-card">
+            <h3>🏥 Healthcare</h3>
+            <p>Clinical decision support, community health planning</p>
+        </div>
+        <div class="stat-card">
+            <h3>🌍 Non-Profit</h3>
+            <p>Community organizing, coalition building, impact assessment</p>
+        </div>
+    </div>
+    
+    <p class="emphasis">75% of enterprise AI projects will integrate multiple AI models/agents (Gartner) — GCI is the orchestration layer</p>
+</div>
+
+<!-- SLIDE 11: COMPETITIVE ADVANTAGE -->
+<div class="slide">
+    <div class="slide-number">11</div>
+    <h2>GCI Will Determine Winners and Losers</h2>
+    
+    <div class="two-col">
+        <div>
+            <div class="solution-box">
+                <h3>🏆 Winners Will:</h3>
+                <ul>
+                    <li>Use GCI to <span class="highlight">orchestrate stakeholder interactions</span> dynamically</li>
+                    <li>Generate <span class="highlight">private, contextualized LLMs</span> that evolve proprietary knowledge</li>
+                    <li>Build <span class="highlight">persistent decision frameworks</span> with institutional memory</li>
+                    <li>Create <span class="highlight">unique competitive advantage</span> through collective intelligence</li>
+                    <li>Foster <span class="highlight">cultures of trust and loyalty</span></li>
+                    <li>Accelerate <span class="highlight">breakthrough innovation</span> and agility</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+            <div class="problem-box">
+                <h3>❌ Losers Will:</h3>
+                <ul>
+                    <li>Rely on generic LLMs everyone else uses</li>
+                    <li>Replace human stakeholders with bots</li>
+                    <li>Lose unique differentiation</li>
+                    <li>Become commoditized or subsumed by trillion-dollar platforms</li>
+                    <li>Struggle with alignment and execution</li>
+                    <li>Lose institutional knowledge with personnel changes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <p class="emphasis" style="margin-top: 2rem;">The question isn't whether to embrace GCI—it's whether you can afford not to.</p>
+</div>
+
+<!-- SLIDE 12: TECHNOLOGY MOATS -->
+<div class="slide">
+    <div class="slide-number">12</div>
+    <h2>Defensible Technology: Patents & Algorithmic Innovation</h2>
+    
+    <div class="solution-box">
+        <h3>Four Substantial Registered Patents (2022, 2023)</h3>
+        <p>Linking transformer model technology to automated knowledge acquisition — a unique intersection no one else has claimed</p>
+    </div>
+    
+    <h3>Core Algorithmic Innovations:</h3>
+    <ul>
+        <li><strong>Spectral relevance ranking</strong> using Perron-Frobenius theorem and PageRank-style analysis</li>
+        <li><strong>Bayesian sampling for adaptive learning</strong> — β-function implementation for convergence</li>
+        <li><strong>Markov blanket modeling</strong> for context isolation and multi-criteria decision-making</li>
+        <li><strong>Semantic Hilbert space embeddings</strong> for belief manifold navigation</li>
+        <li><strong>Integration with Free Energy Principle</strong> — modeling collaboration as uncertainty minimization</li>
+    </ul>
+    
+    <p class="emphasis">27+ years of research in adaptive learning systems from AI 1.0 expert systems through modern transformers</p>
+</div>
+
+<!-- SLIDE 13: THE ASK -->
+<div class="slide">
+    <div class="slide-number">13</div>
+    <h2>The Opportunity Before Us</h2>
+    
+    <div class="opportunity-box">
+        <h3>Perfect Market Timing</h3>
+        <ul>
+            <li><strong>Disillusionment with GenAI</strong> creating demand for integrated systems</li>
+            <li><strong>75% of enterprise AI projects</strong> moving to multi-agent architectures</li>
+            <li><strong>40% identify explainability as key risk</strong> but few are addressing it</li>
+            <li><strong>Consulting industry disruption</strong> creates $1T opportunity</li>
+            <li><strong>Democratic deficit</strong> in civic engagement demands new solutions</li>
+        </ul>
+    </div>
+    
+    <h3 style="margin-top: 2rem;">What We're Building:</h3>
+    <ul>
+        <li>Not just a collaboration tool — an <span class="highlight">Operating System for Generative Collective Intelligence</span></li>
+        <li>The orchestration layer that <span class="highlight">integrates human reasoning with AI capabilities</span></li>
+        <li>A fundamentally new <span class="highlight">kind of Wikipedia</span> — managing collections of intelligences</li>
+        <li>The platform that enables organizations to <span class="highlight">discover what they collectively know</span></li>
+    </ul>
+    
+    <p class="emphasis" style="margin-top: 3rem;">With patented technology, market-tested product, and proven results at NATO, Alera, and beyond—CSmart is uniquely positioned to lead the next wave of AI evolution.</p>
+</div>
+
+<!-- SLIDE 14: CONTACT -->
+<div class="slide">
+    <div class="slide-number">14</div>
+    <div style="text-align: center;">
+        <div class="logo-text" style="font-size: 3rem;">CSmart</div>
+        <p style="font-size: 1.5rem; margin: 2rem 0; color: #00ffcc;">
+            The human cognition layer that AI has been missing
+        </p>
+        
+        <div style="margin: 3rem 0;">
+            <p style="font-size: 1.3rem;">Kim Polese Chairman and Co-Founder</p>
+            <p style="font-size: 1.3rem;">Tom Kehler, Chief Scientist, Interim CEO, and Co-Founder</p>
+            <p style="font-size: 1.3rem;"><a href="mailto:kim@crowdsmart.ai" style="color: #00d4ff; text-decoration: none;">kim@crowdsmart.ai</a></p>
+            <p style="font-size: 1.3rem;"><a href="mailto:tom@crowdsmart.ai" style="color: #00d4ff; text-decoration: none;">tom@crowdsmart.ai</a></p>
+            <p style="font-size: 1.3rem;"><a href="https://www.crowdsmart.ai" style="color: #00d4ff; text-decoration: none;">www.crowdsmart.ai</a></p>
+        </div>
+        
+        <p class="emphasis" style="margin-top: 4rem;">
+            Join us in building the future where human and AI intelligence combine to solve humanity's most complex challenges
+        </p>
+    </div>
+</div>
+
+<script>
+// Simple keyboard navigation
+document.addEventListener('keydown', (e) => {
+    const slides = document.querySelectorAll('.slide');
+    const currentSlide = Math.floor(window.scrollY / window.innerHeight);
+    
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        if (currentSlide < slides.length - 1) {
+            slides[currentSlide + 1].scrollIntoView({ behavior: 'smooth' });
+        }
+    } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        if (currentSlide > 0) {
+            slides[currentSlide - 1].scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
+</script>
+
+</body>
+</html>
+<-9 Force rebuild -->
