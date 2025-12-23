@@ -3,259 +3,1431 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CrowdSmart: Trusted Intelligence - Investor Overview</title>
+  <title>CrowdSmart: Trusted Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      /* Core palette */
+      --bg-deep: #030810;
+      --bg-primary: #0a1628;
+      --bg-elevated: #0f1f35;
+      --bg-card: rgba(15, 31, 53, 0.6);
+      
+      /* Accent colors */
+      --cyan-bright: #00e5ff;
+      --cyan-primary: #22d3ee;
+      --cyan-dim: rgba(34, 211, 238, 0.6);
+      --cyan-glow: rgba(34, 211, 238, 0.15);
+      --purple-accent: #a855f7;
+      --green-accent: #22c55e;
+      --orange-accent: #f59e0b;
+      --red-accent: #ef4444;
+      
+      /* Text colors */
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.75);
+      --text-tertiary: rgba(255, 255, 255, 0.5);
+      --text-muted: rgba(255, 255, 255, 0.35);
+      
+      /* Effects */
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --gradient-cyan: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+      --gradient-purple: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+      --gradient-mesh: radial-gradient(ellipse 80% 50% at 20% 40%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+                       radial-gradient(ellipse 60% 60% at 80% 20%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                       radial-gradient(ellipse 50% 80% at 50% 90%, rgba(34, 211, 238, 0.08) 0%, transparent 50%);
+      
+      /* Spacing */
+      --section-padding: clamp(60px, 10vh, 120px);
+      --content-max: 1400px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
-    :root {
-      --bg-dark: #0a1628;
-      --bg-darker: #060d18;
-      --accent-cyan: #24CBE5;
-      --accent-cyan-dim: rgba(36, 203, 229, 0.7);
-      --accent-blue: #058DC7;
-      --accent-green: #50B432;
-      --accent-purple: #9c27b0;
-      --accent-orange: #ff9800;
-      --accent-red: #ef5350;
-      --text-white: #ffffff;
-      --text-gray: rgba(255, 255, 255, 0.7);
-      --text-dim: rgba(255, 255, 255, 0.5);
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --card-border: rgba(36, 203, 229, 0.3);
+
+    html {
+      scroll-behavior: smooth;
     }
-    
+
     body {
-      font-family: Arial, sans-serif;
-      background: var(--bg-darker);
-      color: var(--text-white);
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
       line-height: 1.6;
+      overflow-x: hidden;
     }
-    
-    .slide {
+
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    /* Navigation */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background: rgba(10, 22, 40, 0.9);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--gradient-cyan);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan-primary);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--cyan-primary);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
       min-height: 100vh;
-      padding: 60px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 120px 40px 80px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-mesh);
+      opacity: 0.8;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .hero-orb-1 {
+      width: 600px;
+      height: 600px;
+      background: var(--cyan-primary);
+      top: -200px;
+      right: -100px;
+      animation-delay: 0s;
+    }
+
+    .hero-orb-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--purple-accent);
+      bottom: -100px;
+      left: -100px;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -30px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(20px, 30px) scale(1.02); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 24px;
+      color: var(--cyan-primary);
+      margin-bottom: 32px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--cyan-primary);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .hero-title {
+      font-size: clamp(48px, 8vw, 88px);
+      margin-bottom: 24px;
+      background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 50%, var(--cyan-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(20px, 3vw, 28px);
+      color: var(--text-secondary);
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--gradient-cyan);
+      color: var(--bg-deep);
+      box-shadow: 0 4px 20px rgba(34, 211, 238, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(34, 211, 238, 0.4);
+    }
+
+    .btn-secondary {
+      background: var(--glass-bg);
+      color: var(--text-primary);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--cyan-dim);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
       flex-direction: column;
-      position: relative;
-      background: var(--bg-dark);
+      align-items: center;
+      gap: 8px;
+      color: var(--text-tertiary);
+      font-size: 12px;
+      animation: bounce 2s ease-in-out infinite;
     }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--cyan-primary), transparent);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* Section Styles */
+    .section {
+      padding: var(--section-padding) 40px;
+      position: relative;
+    }
+
+    .section-inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-label {
+      font-size: 24px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan-primary);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      margin-bottom: 20px;
+    }
+
+    .section-desc {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Card Styles */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(20px);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover {
+      border-color: var(--cyan-dim);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Problem Section */
     
-    .slide-title {
-      background: linear-gradient(135deg, #0a2463 0%, #1e3a5f 50%, #0a1628 100%);
+    .problem-section {
+      background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 100%);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .problem-card {
       position: relative;
       overflow: hidden;
-      justify-content: center;
     }
-    
-    .slide-title::before {
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--gradient-cyan);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .problem-card:hover::before {
+      opacity: 1;
+    }
+
+    .problem-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--cyan-glow);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .problem-card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .problem-card p {
+      color: var(--text-secondary);
+      font-size: 15px;
+    }
+
+    /* Solution Section */
+    .solution-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .solution-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, var(--cyan-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .solution-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .solution-node {
+      text-align: center;
+    }
+
+    .solution-inputs,
+    .solution-outputs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .solution-input-card,
+    .solution-output-card {
+      padding: 20px 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      backdrop-filter: blur(20px);
+      min-width: 180px;
+    }
+
+    .solution-input-card .icon,
+    .solution-output-card .icon {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .solution-input-card h4,
+    .solution-output-card h4 {
+      font-size: 16px;
+      margin-bottom: 4px;
+      color: var(--cyan-primary);
+    }
+
+    .solution-input-card p,
+    .solution-output-card p {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    .solution-center {
+      padding: 48px;
+      background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+      border: 2px solid var(--cyan-dim);
+      border-radius: 24px;
+      min-width: 280px;
+      position: relative;
+    }
+
+    .solution-center::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 24px;
+      background: var(--gradient-cyan);
+      opacity: 0.2;
+      z-index: -1;
+      filter: blur(20px);
+    }
+
+    .solution-center .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .solution-center h3 {
+      font-size: 22px;
+      color: var(--cyan-primary);
+      margin-bottom: 8px;
+    }
+
+    .solution-center p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .solution-arrow {
+      font-size: 32px;
+      color: var(--cyan-primary);
+      opacity: 0.6;
+    }
+
+    .solution-plus {
+      font-size: 24px;
+      color: var(--text-tertiary);
+    }
+
+    /* Process Section */
+    .process-section {
+      background: var(--bg-primary);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 1000px) {
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .process-card {
+      position: relative;
+      padding-top: 24px;
+    }
+
+    .process-number {
+      position: absolute;
+      top: 0;
+      left: 32px;
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-cyan);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--bg-deep);
+      box-shadow: 0 4px 20px rgba(34, 211, 238, 0.4);
+      z-index: 1;
+    }
+
+    .process-card .card {
+      padding-top: 48px;
+      height: 100%;
+    }
+
+    .process-card h3 {
+      font-size: 18px;
+      color: var(--cyan-primary);
+      margin-bottom: 12px;
+    }
+
+    .process-card p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .process-banner {
+      margin-top: 48px;
+      padding: 24px 40px;
+      background: linear-gradient(90deg, var(--cyan-glow) 0%, rgba(168, 85, 247, 0.1) 100%);
+      border: 1px solid var(--cyan-dim);
+      border-radius: 16px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--cyan-primary);
+    }
+
+    /* Video Section */
+    .video-section {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-deep) 100%);
+    }
+
+    .video-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .video-card {
+      border-radius: 24px;
+      overflow: visible;
+      position: relative;
+      padding: 40px;
+    }
+
+    .video-card video {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      margin-bottom: 32px;
+      background: var(--bg-deep);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-card h3 {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .video-card p {
+      color: var(--text-secondary);
+      font-size: 16px;
+      max-width: 700px;
+    }
+
+    /* Case Study Section */
+    .case-study-section {
+      position: relative;
+    }
+
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .case-study-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .case-study-content h3 {
+      font-size: 28px;
+      color: var(--cyan-primary);
+      margin-bottom: 24px;
+    }
+
+    .case-study-content p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      font-size: 16px;
+    }
+
+    .case-study-list {
+      list-style: none;
+    }
+
+    .case-study-list li {
+      padding: 12px 0;
+      padding-left: 32px;
+      position: relative;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .case-study-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--cyan-primary);
+      font-weight: bold;
+    }
+
+    .case-study-visual {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .case-study-visual img {
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    /* Stats Section */
+    .stats-section {
+      background: var(--bg-primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats-section::before {
       content: '';
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: 
-        radial-gradient(ellipse 80% 60% at 30% 70%, rgba(36, 203, 229, 0.4), transparent),
-        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(5, 141, 199, 0.3), transparent);
-      pointer-events: none;
+      background: var(--gradient-mesh);
+      opacity: 0.5;
     }
-    
-    .slide-content {
-      background: var(--bg-dark);
-    }
-    
-    h1 {
-      font-size: 48px;
-      font-weight: bold;
-      margin-bottom: 24px;
-      color: var(--text-white);
-    }
-    
-    h2 {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 16px;
-      color: var(--text-white);
-    }
-    
-    h3 {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 12px;
-      color: var(--accent-cyan);
-    }
-    
-    .subtitle {
-      font-size: 28px;
-      color: var(--text-white);
-      margin-bottom: 40px;
-    }
-    
-    .tagline {
-      font-size: 18px;
-      color: var(--text-gray);
-      margin-top: 40px;
-    }
-    
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 24px;
-    }
-    
-    .card-grid {
+
+    .stats-grid {
       display: grid;
-      gap: 24px;
-    }
-    
-    .card-grid-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .card-grid-3 {
       grid-template-columns: repeat(3, 1fr);
-    }
-    
-    .card-grid-4 {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    
-    .bullet-list {
-      list-style: none;
-      padding: 0;
-    }
-    
-    .bullet-list li {
-      padding: 8px 0 8px 24px;
+      gap: 32px;
       position: relative;
-      color: var(--text-gray);
+      z-index: 1;
     }
-    
-    .bullet-list li::before {
-      content: '●';
-      position: absolute;
-      left: 0;
-      color: var(--accent-cyan);
+
+    @media (max-width: 800px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    
-    .numbered-badge {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: var(--accent-cyan);
-      color: var(--bg-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 12px;
+
+    .stat-card {
+      text-align: center;
+      padding: 48px 32px;
     }
-    
-    .avatar {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 18px;
-      margin: 0 auto 16px;
-    }
-    
-    .market-value {
-      font-size: 48px;
-      font-weight: bold;
-      color: var(--accent-cyan);
+
+    .stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(48px, 6vw, 72px);
+      font-weight: 700;
+      background: var(--gradient-cyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
       margin-bottom: 8px;
     }
-    
-    .flow-diagram {
-      display: flex;
+
+    .stat-label {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .stat-desc {
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+
+    /* Technology Section */
+    .tech-section {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-deep) 100%);
+    }
+
+    .tech-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      margin: 40px 0;
+      gap: 12px;
+      padding: 12px 24px;
+      background: var(--cyan-glow);
+      border: 1px solid var(--cyan-dim);
+      border-radius: 100px;
+      margin-bottom: 48px;
     }
-    
-    .flow-arrow {
+
+    .tech-badge-icon {
       font-size: 24px;
-      color: var(--accent-cyan);
     }
-    
+
+    .tech-badge-text {
+      font-weight: 600;
+      color: var(--cyan-primary);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 800px) {
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .tech-card ul {
+      list-style: none;
+    }
+
+    .tech-card li {
+      padding: 12px 0;
+      padding-left: 24px;
+      position: relative;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .tech-card li::before {
+      content: '◆';
+      position: absolute;
+      left: 0;
+      color: var(--cyan-primary);
+      font-size: 10px;
+    }
+
+    .tech-card li strong {
+      color: var(--text-primary);
+    }
+
+    .tech-footer {
+      text-align: center;
+      margin-top: 48px;
+      color: var(--text-tertiary);
+      font-size: 14px;
+    }
+
+    /* Comparison Section */
+    .comparison-section {
+      background: var(--bg-deep);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 800px) {
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .comparison-card-positive {
+      border-color: var(--green-accent);
+    }
+
+    .comparison-card-positive h3 {
+      color: var(--green-accent);
+    }
+
+    .comparison-card-negative {
+      border-color: var(--red-accent);
+    }
+
+    .comparison-card-negative h3 {
+      color: var(--red-accent);
+    }
+
+    .comparison-card h3 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .comparison-card ul {
+      list-style: none;
+    }
+
+    .comparison-card li {
+      padding: 10px 0;
+      padding-left: 28px;
+      position: relative;
+      color: var(--text-secondary);
+    }
+
+    .comparison-card-positive li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--green-accent);
+      font-weight: bold;
+    }
+
+    .comparison-card-negative li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: var(--red-accent);
+    }
+
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 24px;
+      background: var(--bg-card);
+      border-radius: 16px;
+      overflow: hidden;
     }
-    
+
     .comparison-table th,
     .comparison-table td {
-      padding: 12px 16px;
+      padding: 20px 24px;
       text-align: left;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid var(--glass-border);
     }
-    
+
     .comparison-table th {
-      color: var(--accent-cyan);
-      font-weight: bold;
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--cyan-primary);
+      font-weight: 600;
     }
-    
-    .highlight-banner {
-      background: rgba(36, 203, 229, 0.15);
-      border: 1px solid var(--accent-cyan);
-      border-radius: 8px;
-      padding: 16px 24px;
-      text-align: center;
-      color: var(--accent-cyan);
-      margin-top: 32px;
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
     }
-    
-    .footer-note {
-      margin-top: auto;
-      padding-top: 24px;
-      font-size: 14px;
-      color: var(--text-dim);
-      text-align: center;
+
+    .comparison-table .positive {
+      color: var(--green-accent);
     }
-    
-    .slide-number {
-      position: absolute;
-      bottom: 20px;
-      right: 40px;
-      font-size: 12px;
-      color: var(--text-dim);
+
+    .comparison-table .negative {
+      color: var(--red-accent);
     }
-    
-    .two-column {
+
+    /* Business Model Section */
+    .business-section {
+      background: var(--bg-primary);
+    }
+
+    .business-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
-      align-items: start;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+      margin-bottom: 48px;
     }
-    
-    .video-container {
-      width: 100%;
-      max-width: 100%;
-      margin: 40px auto;
-      border-radius: 12px;
+
+    @media (max-width: 900px) {
+      .business-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .business-card {
+      position: relative;
       overflow: hidden;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
     }
-    
-    .video-container video {
+
+    .business-card-primary {
+      border-color: var(--cyan-dim);
+    }
+
+    .business-card-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-cyan);
+    }
+
+    .business-card-secondary {
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    .business-card-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-purple);
+    }
+
+    .business-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .business-card-primary .business-label {
+      color: var(--cyan-primary);
+    }
+
+    .business-card-secondary .business-label {
+      color: var(--purple-accent);
+    }
+
+    .business-card h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .business-card > p {
+      color: var(--text-tertiary);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .business-card ul {
+      list-style: none;
+    }
+
+    .business-card li {
+      padding: 8px 0;
+      padding-left: 20px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .business-card li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--cyan-primary);
+    }
+
+    .business-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 600px) {
+      .business-stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .business-stat {
+      text-align: center;
+      padding: 32px 24px;
+    }
+
+    .business-stat-value {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--cyan-primary);
+      margin-bottom: 8px;
+    }
+
+    .business-stat-label {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    /* GTM Section */
+    .gtm-section {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-deep) 100%);
+    }
+
+    .gtm-phases {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    @media (max-width: 900px) {
+      .gtm-phases {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .gtm-phase {
+      position: relative;
+    }
+
+    .gtm-phase-label {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .gtm-phase:nth-child(1) .gtm-phase-label { color: var(--green-accent); }
+    .gtm-phase:nth-child(2) .gtm-phase-label { color: var(--cyan-primary); }
+    .gtm-phase:nth-child(3) .gtm-phase-label { color: var(--purple-accent); }
+
+    .gtm-phase:nth-child(1) .card { border-color: rgba(34, 197, 94, 0.3); }
+    .gtm-phase:nth-child(2) .card { border-color: var(--cyan-dim); }
+    .gtm-phase:nth-child(3) .card { border-color: rgba(168, 85, 247, 0.3); }
+
+    .gtm-phase h3 {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+
+    .gtm-phase:nth-child(1) h3 { color: var(--green-accent); }
+    .gtm-phase:nth-child(2) h3 { color: var(--cyan-primary); }
+    .gtm-phase:nth-child(3) h3 { color: var(--purple-accent); }
+
+    .gtm-phase ul {
+      list-style: none;
+    }
+
+    .gtm-phase li {
+      padding: 8px 0;
+      padding-left: 20px;
+      position: relative;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .gtm-phase li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--text-tertiary);
+    }
+
+    .traction-title {
+      font-size: 24px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .traction-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .traction-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .traction-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .traction-card {
+      padding: 20px;
+    }
+
+    .traction-card h4 {
+      font-size: 15px;
+      color: var(--cyan-primary);
+      margin-bottom: 4px;
+    }
+
+    .traction-card p {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    /* Team Section */
+    .team-section {
+      background: var(--bg-primary);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .team-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0 auto 20px;
+      color: var(--bg-deep);
+    }
+
+    .team-card:nth-child(1) .team-avatar { background: var(--gradient-cyan); }
+    .team-card:nth-child(2) .team-avatar { background: var(--gradient-purple); }
+    .team-card:nth-child(3) .team-avatar { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .team-card:nth-child(4) .team-avatar { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .team-card:nth-child(5) .team-avatar { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .team-card:nth-child(6) .team-avatar { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+
+    .team-card h3 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .team-card .role {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .team-card:nth-child(1) .role { color: var(--cyan-primary); }
+    .team-card:nth-child(2) .role { color: var(--purple-accent); }
+    .team-card:nth-child(3) .role { color: var(--green-accent); }
+    .team-card:nth-child(4) .role { color: #3b82f6; }
+    .team-card:nth-child(5) .role { color: var(--orange-accent); }
+    .team-card:nth-child(6) .role { color: var(--red-accent); }
+
+    .team-card .bio {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    /* Vision Section */
+    .vision-section {
+      background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-deep) 100%);
+      text-align: center;
+    }
+
+    .vision-quote {
+      font-size: clamp(20px, 3vw, 28px);
+      font-style: italic;
+      color: var(--text-secondary);
+      max-width: 900px;
+      margin: 0 auto 64px;
+      padding: 40px;
+      border-left: 4px solid var(--cyan-primary);
+      text-align: left;
+      background: var(--glass-bg);
+      border-radius: 0 16px 16px 0;
+    }
+
+    .vision-tagline {
+      font-size: 20px;
+      color: var(--cyan-primary);
+      margin-bottom: 48px;
+    }
+
+    .vision-pillars {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 64px;
+    }
+
+    .vision-pillar {
+      text-align: center;
+    }
+
+    .vision-pillar-icon {
+      font-size: 48px;
+      margin-bottom: 8px;
+    }
+
+    .vision-pillar-label {
+      font-size: 14px;
+      color: var(--text-tertiary);
+    }
+
+    .vision-plus {
+      font-size: 24px;
+      color: var(--text-muted);
+    }
+
+    .vision-brand {
+      margin-top: 48px;
+    }
+
+    .vision-brand h2 {
+      font-size: 48px;
+      background: var(--gradient-cyan);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .vision-brand p {
+      font-size: 18px;
+      color: var(--text-tertiary);
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-deep);
+      padding: 80px 40px 40px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .footer-inner {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-brand-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--gradient-cyan);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .footer-brand-text h3 {
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .footer-brand-text p {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--cyan-primary);
+    }
+
+    .footer-copyright {
       width: 100%;
-      height: auto;
-      display: block;
+      text-align: center;
+      padding-top: 40px;
+      margin-top: 40px;
+      border-top: 1px solid var(--glass-border);
+      font-size: 13px;
+      color: var(--text-muted);
     }
-    
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+    .stagger-6 { transition-delay: 0.6s; }
+
+    /* Mobile Adjustments */
+    @media (max-width: 768px) {
+      .nav {
+        padding: 16px 20px;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .hero {
+        padding: 100px 20px 60px;
+      }
+      
+      .section {
+        padding: var(--section-padding) 20px;
+      }
+      
+      .solution-flow {
+        flex-direction: column;
+      }
+      
+      .solution-arrow {
+        transform: rotate(90deg);
+      }
+    }
     .image-placeholder {
       background: linear-gradient(135deg, rgba(36, 203, 229, 0.1), rgba(5, 141, 199, 0.1));
       border-radius: 12px;
@@ -266,632 +1438,729 @@
       min-height: 200px;
       color: var(--text-dim);
     }
-    
-    .stats-row {
-      display: flex;
-      gap: 24px;
-      margin-top: 32px;
-    }
-    
-    .stat-box {
-      flex: 1;
-      background: var(--card-bg);
-      border-radius: 8px;
-      padding: 16px;
-      text-align: center;
-    }
-    
-    .stat-value {
-      font-size: 28px;
-      font-weight: bold;
-      color: var(--accent-cyan);
-    }
-    
-    .stat-label {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-top: 4px;
-    }
-
-    .phase-header {
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    
-    .phase-green { color: var(--accent-green); }
-    .phase-cyan { color: var(--accent-cyan); }
-    .phase-purple { color: var(--accent-purple); }
-    
-    @media print {
-      .slide {
-        page-break-after: always;
-        min-height: 100vh;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Slide 1: Title -->
-  <section class="slide slide-title">
-    <div style="position: relative; z-index: 1;">
-      <h1 style="font-size: 56px; margin-bottom: 0;">CrowdSmart:</h1>
-      <h1 style="font-size: 56px; margin-top: 0;">Trusted Intelligence</h1>
-      <p class="subtitle">Integrating Human and AI Reasoning in Collective Reasoning</p>
-      <p class="tagline">CrowdSmart Investor Overview<br>December 2025</p>
-    </div>
-    <span class="slide-number">1</span>
-  </section>
+  <!-- Navigation -->
+  <nav class="nav" id="nav">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-icon">🧠</span>
+      CS2.0
+    </a>
+    <ul class="nav-links">
+      <li><a href="#problem">Problem</a></li>
+      <li><a href="#solution">Solution</a></li>
+      <li><a href="#technology">Technology</a></li>
+      <li><a href="#market">Investment Interest</a></li>
+      <li><a href="#resources">Resources</a></li>                            
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact" class="btn btn-primary" style="padding: 10px 20px; font-size: 14px;">Contact</a></li>
+    </ul>
+  </nav>
 
-  <!-- Slide 2: The Trust Gap -->
-  <section class="slide slide-content">
-    <h1>Bridging the Trust Gap in AI - The Grounding Problem</h1>
-    <div class="two-column" style="margin-top: 40px;">
-      <div class="image-placeholder" style="min-height: 375px; max-width: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 0;">
-        <img src="assets/images/trust-blocks.png" alt="TRUST - wooden blocks spelling trust" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-      </div>
-      <div>
-        <ul class="bullet-list" style="font-size: 26px;">
-          <li>Generative AI has a trust problem</li>
-          <li>AI needs to be grounded</li>
-          <li>The only way to ground AI is to integrate human cognition</li>
-        </ul>
-      </div>
-    </div>
-    <span class="slide-number">2</span>
-  </section>
-
-  <!-- Slide 3: Communication Complexity -->
-  <section class="slide slide-content">
-    <h1>How do you integrate human cognition?</h1>
-    <h2 style="color: var(--text-gray); font-weight: normal;">Communication complexity exponentially scales</h2>
-    <div class="two-column" style="margin-top: 40px; gap: 20px;">
-      <div class="image-placeholder" style="min-height: 375px; max-width: 80%; display: flex; align-items: center; justify-content: flex-start; padding: 0;">
-        <img src="assets/images/exponential-complexity.png" alt="Exponential Complexity Graph - interconnected network of people" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-      </div>
-      <div style="padding-left: 15px;">
-        <p style="font-size: 24px; color: var(--text-gray); margin-bottom: 24px;">
-          An AI Agent is needed that learns and guides deliberative conversations to a conclusive and shared understanding.
-        </p>
-        <p style="font-size: 20px; color: var(--text-dim);">
-          Threaded conversations - e.g. Slack, Reddit etc. - is the current mode of communication but they do not help converge on what is of shared importance
-        </p>
-      </div>
-    </div>
-    <span class="slide-number">3</span>
-  </section>
-
-  <!-- Slide 4: New Form of AI -->
-  <section class="slide slide-content">
-    <h1>A new form of AI is required</h1>
-    <div class="two-column" style="margin-top: 40px; gap: 20px;">
-      <div class="image-placeholder" style="min-height: 375px; max-width: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 0;">
-        <img src="assets/images/collective-mind.png" alt="Collective Mind Visualization - AI robot facilitating collaborative discussion" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
-      </div>
-      <div style="padding-left: 15px;">
-        <p style="font-size: 24px; color: var(--text-gray); margin-bottom: 24px;">
-          The new AI guides and orchestrates deliberation toward a shared understanding.
-        </p>
-        <p style="font-size: 24px; color: var(--text-gray); margin-bottom: 24px;">
-          Rather than learning from batches of historical data, the new form of AI adaptively and continuously learns from human deliberations on decisions and problem-solving.
-        </p>
-        <p style="font-size: 24px; color: var(--text-gray); margin-bottom: 24px;">
-          No pre-training is required. It guides, learns and evolves, surfacing shared beliefs about ground truth.
-        </p>
-        <p style="font-size: 26px; color: var(--accent-cyan); font-weight: bold;">
-          The output is a private language model of the group's collective mind.
-        </p>
-        <p style="font-size: 24px; color: var(--text-gray); margin-top: 32px;">
-          A new form of AI is needed that guides deliberative conversations to a conclusive and shared understanding.
-        </p>
-        <p style="font-size: 20px; color: var(--text-dim); margin-top: 16px;">
-          Threaded conversations - e.g. Slack, Reddit etc. - is the current mode of communication but they do not help converge on what is of shared importance
-        </p>
-      </div>
-    </div>
-    <span class="slide-number">4</span>
-  </section>
-
-  <!-- Slide 5: Solution GCI -->
-  <section class="slide slide-content">
-    <h1>Solution: Generative Collective Intelligence</h1>
-    <p class="subtitle" style="font-size: 20px; color: var(--text-gray);">
-      Transforms AI by integrating human cognition to build models grounded in trust
-    </p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
     
-    <div class="flow-diagram">
-      <div>
-        <p style="font-size: 12px; color: var(--text-dim); margin-bottom: 16px;">INPUTS</p>
-        <div class="card" style="text-align: center; margin-bottom: 16px;">
-          <span style="font-size: 32px;">👥</span>
-          <h3 style="margin-top: 8px; font-size: 16px;">Human Experts</h3>
-          <p style="font-size: 12px; color: var(--text-dim);">Domain knowledge</p>
-        </div>
-        <p style="text-align: center; color: var(--text-dim);">+</p>
-        <div class="card" style="text-align: center; margin-top: 16px;">
-          <span style="font-size: 32px;">🤖</span>
-          <h3 style="margin-top: 8px; font-size: 16px;">AI Agents</h3>
-          <p style="font-size: 12px; color: var(--text-dim);">Diverse LLM personas</p>
-        </div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        CS2.0 2026
+      </div>
+      <h1 class="hero-title">Trusted Intelligence</h1>
+      <p class="hero-subtitle">Integrating Human and AI Reasoning through <br> Generative Collective Intelligence</p>
+      <div class="hero-cta">
+        <a href="#solution" class="btn btn-primary">Explore Solution</a>
+        <a href="#contact" class="btn btn-secondary">Request Demo</a>
+      </div>
+    </div>
+    
+    <div class="hero-scroll">
+      <span>Scroll to explore</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="section problem-section" id="problem">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">The Challenge</p>
+        <h2 class="section-title">Bridging the Trust Gap in AI</h2>
+        <p class="section-desc">AI has a grounding problem. <br>The only way to build trusted AI is to integrate human cognition.</p>
       </div>
       
-      <span class="flow-arrow">→</span>
-      
-      <div class="card" style="text-align: center; padding: 40px; border-color: var(--accent-cyan);">
-        <span style="font-size: 40px;">🧠</span>
-        <h3 style="margin-top: 16px;">Collective Reasoning Agent</h3>
-        <p style="font-size: 14px; color: var(--text-gray);">Orchestrates deliberation,<br>managing communication complexity</p>
-      </div>
-      
-      <span class="flow-arrow">→</span>
-      
-      <div>
-        <p style="font-size: 12px; color: var(--text-dim); margin-bottom: 16px;">OUTPUTS</p>
-        <div class="card" style="margin-bottom: 12px; padding: 16px;">
-          <p style="color: var(--accent-cyan); font-size: 14px;">Private Language Model</p>
+      <div class="problem-grid">
+        <div class="card problem-card fade-up stagger-1">
+          <div class="problem-icon">⚠️</div>
+          <h3>The Trust Deficit</h3>
+          <p>Generative AI produces plausible outputs, but organizations need validated, actionable intelligence they can trust.</p>
         </div>
-        <div class="card" style="margin-bottom: 12px; padding: 16px;">
-          <p style="color: var(--accent-cyan); font-size: 14px;">Ground Truth</p>
+        <div class="card problem-card fade-up stagger-2">
+          <div class="problem-icon">🔗</div>
+          <h3>Grounding Crisis</h3>
+          <p>AI systems lack contextual judgment. They need to be anchored in real human expertise and domain knowledge.</p>
         </div>
-        <div class="card" style="padding: 16px;">
-          <p style="color: var(--accent-cyan); font-size: 14px;">Persistent knowledge model</p>
+        <div class="card problem-card fade-up stagger-3">
+          <div class="problem-icon">📈</div>
+          <h3>Complexity Explosion</h3>
+          <p>Traditional collaboration scales O(n²). Adding people to complex problems adds chaos, not clarity.</p>
+        </div>
+        <div class="card problem-card fade-up stagger-4">
+          <div class="problem-icon">🏢</div>
+          <h3>Knowledge Silos</h3>
+          <p>Critical expertise remains trapped. Consulting firms charge $500K+ for insights already inside organizations.</p>
         </div>
       </div>
     </div>
-    <span class="slide-number">5</span>
   </section>
-
-  <!-- Slide 6: How It Works -->
-  <section class="slide slide-content">
-    <h1>How it works: early stage investing</h1>
+  <section class="section problem-section">
+    <h1>  The real problem is the challenge of converging on shared understanding. <br> The cost of coordination and alignment grows with the number of people involved.</h1>
+    <h2 style="color: var(--text-gray); font-weight: normal;"><br>Communication complexity exponentially scales. 20 people requires managing 190 lines of communication.</h2>
     
-    <div class="card-grid card-grid-4" style="margin-top: 60px;">
-      <div class="card">
-        <div class="numbered-badge">1</div>
-        <h3 style="font-size: 18px;">Independent Assessment</h3>
-        <p style="font-size: 14px; color: var(--text-gray);">25-30 experts evaluate independently. No groupthink. Identity masked.</p>
-      </div>
-      <div class="card">
-        <div class="numbered-badge">2</div>
-        <h3 style="font-size: 18px;">Reason Ranking</h3>
-        <p style="font-size: 14px; color: var(--text-gray);">Markov sampling surfaces priorities via ranking.</p>
-      </div>
-      <div class="card">
-        <div class="numbered-badge">3</div>
-        <h3 style="font-size: 18px;">Interactive QA</h3>
-        <p style="font-size: 14px; color: var(--text-gray);">Live sessions for evidence gathering.</p>
-      </div>
-      <div class="card">
-        <div class="numbered-badge">4</div>
-        <h3 style="font-size: 18px;">Belief Updating</h3>
-        <p style="font-size: 14px; color: var(--text-gray);">Convergence via Free Energy minimization.</p>
-      </div>
-    </div>
-    
-    <div class="highlight-banner" style="margin-top: 80px;">
-      Agile Learning + Automated Reasoning + Knowledge Acquisition
-    </div>
-    <span class="slide-number">6</span>
-  </section>
-
-  <!-- Slide 7: Learning Cycle Simulation -->
-  <section class="slide slide-content">
-    <h1>A User Journey:The Collective Reasonin Agent guides and learns</h1>
-    <p class="subtitle" style="font-size: 20px; color: var(--text-gray); margin-bottom: 40px;">
-      Watch how the system learns and evolves with each contribution
-    </p>
-    
-    <div class="video-container">
-      <video controls preload="metadata" style="width: 100%; height: auto;">
-        <source src="assets/cssprocess.mov" type="video/quicktime">
-        <source src="assets/cssprocess.mov" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <span class="slide-number">7</span>
-  </section>
-
-  <!-- Slide 8: Rich Knowledge Discovery Analytics -->
-  <section class="slide slide-content">
-    <h1>An incubator for evovling ideas and serendipity</h1>
-    <p class="subtitle" style="font-size: 20px; color: var(--text-gray); margin-bottom: 40px;">
-      Identity masking during deliberation allows for the discovery of new ideas.
-    </p>
-    
-    <div class="video-container">
-      <video controls preload="metadata" style="width: 100%; height: auto;">
-        <source src="assets/ideajam.mov" type="video/quicktime">
-        <source src="assets/ideajam.mov" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <span class="slide-number">7</span>
-  </section>
-
-  <!-- Slide 8: Case Study -->
-  <section class="slide slide-content">
-    <h1>Case Study: Investment diligence</h1>
-    <p style="font-size: 20px; color: var(--accent-cyan); margin-bottom: 40px;">
-      This deliberation resulted in one of the decade's most successful semiconductor investments.
-    </p>
-    
-    <div class="two-column">
-      <div>
-        <p style="font-size: 16px; color: var(--text-gray); margin-bottom: 16px;">
-          The Collective Reasoning Agent guided a group of investors and experts through a diligence deliberation process that resulted in an investment in the company's first seed round.
-        </p>
-        <ul class="bullet-list" style="font-size: 16px;">
-          <li>100 days after the initial investment, Intel VC led a Series A round.</li>
-          <li>Microsoft, Amazon, Bosch and others invested in a B round.</li>
-          <li>The company is poised to go public in 2027.</li>
-          <li>The system generated a private language model and a persistent 'causal model' for investing in the category.</li>
-        </ul>
-      </div>
-      <div class="image-placeholder">
-        <img src="assets/images/investment-timeline.png" alt="Investment Timeline & Returns - Causal model showing factors leading to investment and commercial success" style="max-width: 100%; height: auto; border-radius: 8px;">
-      </div>
-    </div>
-    <span class="slide-number">8</span>
-  </section>
-  <!-- Slide 9: Case Study -->
-  <section class="slide slide-content">
-    <h1>Case Study: U.S. Economy Futures</h1>
-    <p style="font-size: 20px; color: var(--accent-cyan); margin-bottom: 40px;">
-      AI Agents participate with market prediction experts to generate a consensus forecast for the U.S. economy.
-    </p>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start;">
-      <!-- Left column: Text and knowledge agent image below -->
-      <div style="display: flex; flex-direction: column; gap: 24px;">
-        <div>
-          <p style="font-size: 18px; color: var(--text-gray); margin-bottom: 24px; line-height: 1.6;">
-            Results from the conference discussions are provided as knowledge base documents to the AI Agent.
+    <div class="image-placeholder" style="min-height: 375px; max-width: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 40px;">
+        <img src="assets/images/exponential-complexity.png" alt="Exponential Complexity Graph - interconnected network of people" style="width: 40%; height: 40%; object-fit: cover; border-radius: 4px;"> 
+        <div style="padding-left: 35px;">
+          <p style="font-size: 24px; color: var(--text-dim);">
+            We use threaded conversations for deliberations and discussions today. <br> These methods do not help converge on what is of shared importance.<br><br>
           </p>
-          <ul class="bullet-list" style="font-size: 18px; line-height: 1.8;">
-            <li>AI Agents are language model agnostic.</li>
-            <li>Knowledge Agents are RAG-based agents that reason only from their private data sources provided by the user.</li>
-            <li>Participants can engage with the agent and ask questions.</li>
-            <li>Agents participate along with humans.</li>
-            <li>Trust is collectively built at the reasoning level.</li>
+      <h2>  The unsolved and unpoken economic issue is coordination and alignement among human teams, human teams working with AI Agents and  AI agents. <br><br>In order to create trust and ground AI models in collecitve intelligence of experts and human teams, we need to manage the process of everyone listing and reviewing each other's contributions. </h1><br>
+     
+      <h2>
+          An orchestrating AI Agent is needed that learns and guides deliberative conversations to a conclusive and shared understanding. <br><br>
+          Human facilitators do this well but they too are limited by the complexity of the conversation and the number of people involved. <br>
+          <br> 
+          An AI orchestrator can do this by listening, learning and analyzing the conversation to guide the conversation to a conclusive and shared understanding.
+        </h2>
+    
+    </div>
+  </section>
+
+  <!-- Solution Section -->
+  <section class="section solution-section" id="solution">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Solution</p>
+        <h2 class="section-title">Generative Collective Intelligence</h2>
+        <p class="section-desc">Transform AI by integrating human cognition to build models grounded in trust</p>
+      </div>
+      
+      <div class="solution-flow fade-up">
+        <div class="solution-node solution-inputs">
+          <p class="section-label" style="margin-bottom: 16px;">Inputs</p>
+          <div class="solution-input-card">
+            <div class="icon">👥</div>
+            <h4>Human Experts</h4>
+            <p>Domain knowledge</p>
+          </div>
+          <span class="solution-plus">+</span>
+          <div class="solution-input-card">
+            <div class="icon">🤖</div>
+            <h4>AI Agents</h4>
+            <p>Diverse LLM personas</p>
+          </div>
+        </div>
+        
+        <span class="solution-arrow">→</span>
+        
+        <div class="solution-node solution-center">
+          <div class="icon">🧠</div>
+          <h3>Collective Reasoning Agent</h3>
+          <p>Orchestrates deliberation,<br>managing communication complexity</p>
+        </div>
+        
+        <span class="solution-arrow">→</span>
+        
+        <div class="solution-node solution-outputs">
+          <p class="section-label" style="margin-bottom: 16px;">Outputs</p>
+          <div class="solution-output-card">
+            <h4>Private Language Model</h4>
+          </div>
+          <div class="solution-output-card">
+            <h4>Ground Truth</h4>
+          </div>
+          <div class="solution-output-card">
+            <h4>Persistent Knowledge Model</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="section process-section">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">How It Works</p>
+        <h2 class="section-title">Early Stage Investing Example</h2>
+      </div>
+      
+      <div class="process-grid">
+        <div class="process-card fade-up stagger-1">
+          <div class="process-number">1</div>
+          <div class="card">
+            <h3>Independent Assessment</h3>
+            <p>25-30 experts evaluate independently. No groupthink. Identity masked.</p>
+          </div>
+        </div>
+        <div class="process-card fade-up stagger-2">
+          <div class="process-number">2</div>
+          <div class="card">
+            <h3>Reason Ranking</h3>
+            <p>Markov sampling surfaces priorities via ranking.</p>
+          </div>
+        </div>
+        <div class="process-card fade-up stagger-3">
+          <div class="process-number">3</div>
+          <div class="card">
+            <h3>Interactive QA</h3>
+            <p>Live sessions for evidence gathering.</p>
+          </div>
+        </div>
+        <div class="process-card fade-up stagger-4">
+          <div class="process-number">4</div>
+          <div class="card">
+            <h3>Belief Updating</h3>
+            <p>Convergence via Free Energy minimization.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="process-banner fade-up">
+        Agile Learning + Automated Reasoning + Knowledge Acquisition
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Section -->
+  <section class="section video-section">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">See It In Action</p>
+        <h2 class="section-title">The Platform Experience</h2>
+        <h3> Observe a simulation of the Collective Reasoning Agent in action</h3>
+      </div>
+      
+      <div class="video-grid">
+        <div class="card video-card fade-up stagger-1">
+          <video controls poster="assets/images/video-poster-1.jpg">
+            <source src="assets/cssprocess.mov" type="video/mp4">
+          </video>
+          <h3>The Collective Reasoning Agent</h3>
+          <p>Watch how the system learns and evolves with each contribution from human experts and AI agents.</p>
+        </div>
+        <div class="card video-card fade-up stagger-2">
+          <video controls poster="assets/images/video-poster-2.jpg">
+            <source src="assets/ideajam.mov" type="video/mp4">
+          </video>
+          <h3>Incubator for Evolving Ideas</h3>
+          <p>Identity masking during deliberation allows for the discovery of new ideas and serendipitous connections.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study Section -->
+  <section class="section case-study-section">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Proven Results</p>
+        <h2 class="section-title">Case Study: Investment Diligence</h2>
+      </div>
+      
+      <div class="case-study-grid">
+        <div class="case-study-content fade-up">
+          <h3>One of the decade's most successful semiconductor investments</h3>
+          <p>The Collective Reasoning Agent guided investors and experts through a diligence deliberation process that resulted in a first seed round investment.</p>
+          <ul class="case-study-list">
+            <li>100 days later, Intel VC led a Series A round</li>
+            <li>Microsoft, Amazon, Bosch invested in Series B</li>
+            <li>Company poised to go public in 2027</li>
+            <li>Generated private language model and persistent causal model</li>
           </ul>
         </div>
-        <div style="background: transparent; border: none; border-radius: 8px; padding: 0; overflow: visible; max-width: 53%;">
-          <img src="assets/images/FSCKA.png" alt="A Knowledge Agent is a RAG-based agent that reasons only from its private data sources provided by the user." style="width: 100%; height: auto; display: block; border-radius: 4px;">
+        <div class="case-study-visual fade-up stagger-2">
+          <img src="assets/images/investment-timeline.png" alt="Investment Timeline">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Case Study 2: US Economy Futures -->
+  <section class="section case-study-section" style="background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 100%);">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Case Study</p>
+        <h2 class="section-title">U.S. Economy Futures Forecast</h2>
+        <p class="section-desc">AI Agents participate with market prediction experts to generate a consensus forecast for the U.S. economy</p>
+      </div>
+      
+      <div class="case-study-grid">
+        <div class="case-study-content fade-up">
+          <h3>Human-AI Collaboration in Market Forecasting</h3>
+          <p>Results from conference discussions are provided as knowledge base documents to the AI Agent, enabling deep contextual reasoning.</p>
+          <ul class="case-study-list">
+            <li>AI Agents are language model agnostic</li>
+            <li>Knowledge Agents are RAG-based agents that reason only from their private data sources</li>
+            <li>Participants can engage with the agent and ask questions</li>
+            <li>Agents participate along with humans in deliberation</li>
+            <li>Trust is collectively built at the reasoning level</li>
+          </ul>
+        </div>
+        <div class="case-study-visual fade-up stagger-2">
+          <img src="assets/images/FSCKA.png" alt="Knowledge Agent Interface" style="margin-bottom: 16px;">
+          <p style="font-size: 13px; color: var(--text-tertiary);">A Knowledge Agent reasons from its private data sources provided by the user</p>
         </div>
       </div>
       
-      <!-- Right column: Two images stacked -->
-      <div style="display: flex; flex-direction: column; gap: 20px;">
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 12px; overflow: hidden; max-width: 64%;">
-          <img src="assets/images/FSCCV.png" alt="Query Collective Voice" style="width: 100%; height: auto; display: block; border-radius: 4px;">
+      <div class="case-study-grid" style="margin-top: 48px;">
+        <div class="case-study-visual fade-up stagger-1">
+          <img src="assets/images/FSCCV.png" alt="Query Collective Voice">
+          <p style="font-size: 13px; color: var(--text-tertiary); margin-top: 16px;">Query the Collective Voice for synthesized insights</p>
         </div>
-        <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 12px; overflow: hidden; max-width: 64%;">
-          <img src="assets/images/FSCBBN.png" alt="Causal model - Bayesian Belief Network." style="width: 100%; height: auto; display: block; border-radius: 4px;">
+        <div class="case-study-visual fade-up stagger-2">
+          <img src="assets/images/FSCBBN.png" alt="Bayesian Belief Network">
+          <p style="font-size: 13px; color: var(--text-tertiary); margin-top: 16px;">Causal model represented as a Bayesian Belief Network</p>
         </div>
       </div>
     </div>
-    <span class="slide-number">9</span>
-  </section>
-  <!-- Slide 10: Validated Applications -->
-  <section class="slide slide-content">
-    <h1>Validated in applications with groups from 10s to thousands</h1>
-    <p style="font-size: 20px; color: var(--text-gray); margin-bottom: 40px;">
-      From investing in startups to corporate innovation and transformation, the system accelerates decision accuracy, transparency and scale.
-    </p>
-    <div class="image-placeholder" style="height: auto;">
-      <img src="assets/images/application-examples-grid.png" alt="Application Examples Grid - various use cases including investing, corporate transformation, defense, brand innovation, and more" style="max-width: 100%; height: auto; border-radius: 8px;">
-    </div>
-    <span class="slide-number">10</span>
   </section>
 
-  <!-- Slide 10: Technology -->
-  <section class="slide slide-content">
-    <h1>Defensible Technology: Patents and Algorithmic Innovation</h1>
-    
-    <div class="card" style="display: inline-block; padding: 12px 24px; margin-bottom: 40px; background: rgba(36, 203, 229, 0.15);">
-      <span style="color: var(--accent-cyan); font-weight: bold;">4 SUBSTANTIAL PATENTS (2022-2023)</span>
-    </div>
-    <p style="color: var(--text-gray); margin-bottom: 40px;">Linking transformer technology to automated knowledge acquisition</p>
-    
-    <div class="card-grid card-grid-2" style="margin-bottom: 32px;">
-      <div>
-        <ul class="bullet-list">
-          <li><strong style="color: var(--text-white);">Spectral Relevance Ranking</strong></li>
-          <li><strong style="color: var(--text-white);">Bayesian Beta-Sampling</strong></li>
-          <li><strong style="color: var(--text-white);">Markov Blanket Modeling</strong></li>
-          <li><strong style="color: var(--text-white);">Perron-Frobenius and PageRank analysis</strong></li>
-          <li>Optimal convergence properties</li>
-          <li>Context isolation for decisions</li>
-        </ul>
+  <!-- Market Stats Section -->
+  <section class="section stats-section" id="market">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Market Opportunity</p>
+        <h2 class="section-title">Trusted Integration of AI</h2>
       </div>
-      <div>
-        <ul class="bullet-list">
-          <li><strong style="color: var(--text-white);">Semantic Hilbert Space</strong></li>
-          <li><strong style="color: var(--text-white);">Free Energy Integration</strong></li>
-          <li><strong style="color: var(--text-white);">Private Language Models</strong></li>
-          <li><strong style="color: var(--text-white);">Fisher-Rao information geometry</strong></li>
-          <li>Collective uncertainty minimization</li>
-          <li>Context-specific LLMs with citations</li>
-        </ul>
-      </div>
-    </div>
-    
-    <p style="text-align: center; color: var(--text-dim); font-size: 14px;">
-      50+ years of AI development across all major paradigms
-    </p>
-    <span class="slide-number">10</span>
-  </section>
-
-  <!-- Slide 11: GCI Gateway -->
-  <section class="slide slide-content">
-    <h1>GCI: The Gateway to Trusted, Grounded AI</h1>
-    <p style="font-size: 16px; color: var(--text-gray); margin-bottom: 32px; max-width: 900px;">
-      Over a 10 year period CrowdSmart demonstrated, refined and patented an architecture for integrating the collective cognitive power of human subject matter experts with AI models and AI Agents. The technology provides a tested scalable system for a next generation socially integrated AI.
-    </p>
-    
-    <div class="card-grid card-grid-2" style="margin-bottom: 32px;">
-      <div class="card" style="border-color: var(--accent-green);">
-        <h3 style="color: var(--accent-green);">With GCI Organizations Will:</h3>
-        <ul class="bullet-list">
-          <li>Generate private, contextualized LLMs</li>
-          <li>Build persistent decision frameworks</li>
-          <li>Create unique competitive advantage</li>
-          <li>Foster cultures of trust and loyalty</li>
-        </ul>
-      </div>
-      <div class="card" style="border-color: var(--accent-red);">
-        <h3 style="color: var(--accent-red);">Without GCI Organizations Will:</h3>
-        <ul class="bullet-list">
-          <li>Risk failed AI Agent use damaging trust</li>
-          <li>Rely on generic LLMs everyone uses</li>
-          <li>Lose institutional knowledge</li>
-          <li>Become commoditized</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div style="margin: 24px 0;">
-      <img src="assets/images/comparison-table.png" alt="Comparison table: GCI/CS vs LLMs capabilities including Knowledge Acquisition, Scalable Collaboration, Scalable Knowledge Acquisition, and Grounding" style="max-width: 100%; height: auto; border-radius: 8px;">
-    </div>
-    <span class="slide-number">11</span>
-  </section>
-
-  <!-- Slide 12: Market Opportunity -->
-  <section class="slide slide-content">
-    <h1>Market Opportunity - Trusted Integration of AI</h1>
-    
-    <div class="card-grid card-grid-3" style="margin: 60px 0;">
-      <div class="card" style="text-align: center;">
-        <p class="market-value">$1.2T</p>
-        <h3 style="font-size: 18px; color: var(--text-white);">Primary Market</h3>
-        <p style="color: var(--text-gray); font-size: 14px;">Global Management Consulting</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <p class="market-value">$50B</p>
-        <h3 style="font-size: 18px; color: var(--text-white);">Decision Intelligence</h3>
-        <p style="color: var(--text-gray); font-size: 14px;">25% CAGR to 2030</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <p class="market-value">$180B</p>
-        <h3 style="font-size: 18px; color: var(--text-white);">Secondary Market</h3>
-        <p style="color: var(--text-gray); font-size: 14px;">Enterprise Collaboration</p>
-      </div>
-    </div>
-    
-    <p class="footer-note">
-      75% of enterprise AI projects will integrate multiple AI models by 2027
-    </p>
-    <span class="slide-number">12</span>
-  </section>
-
-  <!-- Slide 13: Business Model -->
-  <section class="slide slide-content">
-    <h1>Business Model: Two Revenue Engines</h1>
-    
-    <div class="card-grid card-grid-2" style="margin-top: 32px;">
-      <div class="card" style="border-color: var(--accent-cyan);">
-        <p style="font-size: 12px; font-weight: bold; color: var(--accent-cyan); margin-bottom: 8px;">PRIMARY MARKET</p>
-        <h3>Enterprise Knowledge Discovery</h3>
-        <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 16px;">Replacing traditional consulting at 10-20x lower cost</p>
-        <ul class="bullet-list" style="font-size: 14px;">
-          <li>Strategic Decision Support ($50K-200K)</li>
-          <li>Due Diligence & Investment Analysis</li>
-          <li>M&A Integration & Organizational IQ</li>
-          <li>Forecasting: Supply Chain, Sales, Market</li>
-          <li>Policy Impact Assessment</li>
-        </ul>
-      </div>
-      <div class="card" style="border-color: var(--accent-purple);">
-        <p style="font-size: 12px; font-weight: bold; color: #ce93d8; margin-bottom: 8px;">API MARKET</p>
-        <h3 style="color: #ce93d8;">Collective Reasoning API</h3>
-        <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 16px;">The "Stripe for collective intelligence"</p>
-        <ul class="bullet-list" style="font-size: 14px;">
-          <li>Usage-based pricing ($0.10-1.00 per event)</li>
-          <li>Innovation & Product Management</li>
-          <li>Enterprise Collaboration (Slack, Teams)</li>
-          <li>Customer Co-creation & Research</li>
-          <li>Democratic Governance & Civic Tech</li>
-        </ul>
-      </div>
-    </div>
-    
-    <div class="stats-row">
-      <div class="stat-box">
-        <p class="stat-value">90%+</p>
-        <p class="stat-label">Gross Margin</p>
-      </div>
-      <div class="stat-box">
-        <p class="stat-value">Land & Expand</p>
-        <p class="stat-label">GTM Motion</p>
-      </div>
-      <div class="stat-box">
-        <p class="stat-value">Network Effects</p>
-        <p class="stat-label">More users = better models</p>
-      </div>
-    </div>
-    <span class="slide-number">13</span>
-  </section>
-
-  <!-- Slide 14: Go-To-Market -->
-  <section class="slide slide-content">
-    <h1>Go-To-Market Strategy</h1>
-    
-    <div class="card-grid card-grid-3" style="margin-top: 32px;">
-      <div class="card">
-        <p class="phase-header phase-green">NOW → 6 MO</p>
-        <h3 style="color: var(--accent-green); font-size: 18px;">Phase 1: Prove & Partner</h3>
-        <ul class="bullet-list" style="font-size: 14px;">
-          <li>5-10 enterprise pilots</li>
-          <li>Partner with Tier 2 consulting</li>
-          <li>Early API access</li>
-        </ul>
-      </div>
-      <div class="card">
-        <p class="phase-header phase-cyan">6-18 MO</p>
-        <h3 style="font-size: 18px;">Phase 2: Scale & Integrate</h3>
-        <ul class="bullet-list" style="font-size: 14px;">
-          <li>Expand verticals</li>
-          <li>Launch self-serve API</li>
-          <li>Integrate Slack, Teams</li>
-        </ul>
-      </div>
-      <div class="card">
-        <p class="phase-header phase-purple">18-36 MO</p>
-        <h3 style="color: #ce93d8; font-size: 18px;">Phase 3: Platform Dominance</h3>
-        <ul class="bullet-list" style="font-size: 14px;">
-          <li>Collective reasoning layer</li>
-          <li>Domain marketplace</li>
-          <li>International expansion</li>
-        </ul>
-      </div>
-    </div>
-    
-    <h2 style="margin-top: 40px; font-size: 20px;">Proven Traction</h2>
-    <div class="card-grid card-grid-3" style="margin-top: 16px;">
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px;">Investing in Startups</h3>
-        <p style="font-size: 12px; color: var(--text-dim);">Demonstrated GCI accuracy</p>
-      </div>
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px;">Corporate Transformation</h3>
-        <p style="font-size: 12px; color: var(--text-dim);">$1B Financial Services</p>
-      </div>
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px;">Defense Decision-Making</h3>
-        <p style="font-size: 12px; color: var(--text-dim);">NATO Innovation Hub</p>
-      </div>
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px;">Brand Innovation</h3>
-        <p style="font-size: 12px; color: var(--text-dim);">Guitar Center</p>
-      </div>
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px;">Community Healthcare</h3>
-        <p style="font-size: 12px; color: var(--text-dim);">Ontario Healthcare System</p>
-      </div>
-      <div class="card" style="padding: 16px;">
-        <h3 style="font-size: 14px;">Market Forecasting</h3>
-        <p style="font-size: 12px; color: var(--text-dim);">Foundation for Study of Cycles</p>
-      </div>
-    </div>
-    <span class="slide-number">14</span>
-  </section>
-
-  <!-- Slide 15: Leadership Team -->
-  <section class="slide slide-content">
-    <h1>Leadership Team</h1>
-    
-    <div class="card-grid card-grid-3" style="margin-top: 32px;">
-      <div class="card" style="text-align: center;">
-        <div class="avatar" style="background: linear-gradient(135deg, #4dd0e1, #00bcd4); color: #0a1628;">TK</div>
-        <h3 style="color: var(--text-white); font-size: 18px;">Tom Kehler</h3>
-        <p style="color: var(--accent-cyan); font-size: 14px; margin-bottom: 8px;">Chief Scientist & Co-Founder</p>
-        <p style="font-size: 12px; color: var(--text-dim);">50+ yrs AI. CEO IntelliCorp (first AI IPO). 4 patents. PhD Drexel.</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="avatar" style="background: linear-gradient(135deg, #ce93d8, #9c27b0); color: #0a1628;">KP</div>
-        <h3 style="color: var(--text-white); font-size: 18px;">Kim Polese</h3>
-        <p style="color: #ce93d8; font-size: 14px; margin-bottom: 8px;">Chairman & Co-Founder</p>
-        <p style="font-size: 12px; color: var(--text-dim);">Former CEO Marimba. Led Java product team at Sun.</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="avatar" style="background: linear-gradient(135deg, #81c784, #4caf50); color: #0a1628;">SP</div>
-        <h3 style="color: var(--text-white); font-size: 18px;">Scott Page</h3>
-        <p style="color: #81c784; font-size: 14px; margin-bottom: 8px;">Advisor: Collective Intelligence</p>
-        <p style="font-size: 12px; color: var(--text-dim);">U of Michigan. Author "The Diversity Bonus".</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="avatar" style="background: linear-gradient(135deg, #64b5f6, #2196f3); color: #0a1628;">MR</div>
-        <h3 style="color: var(--text-white); font-size: 18px;">Martin Reeves</h3>
-        <p style="color: #64b5f6; font-size: 14px; margin-bottom: 8px;">Advisor: Corporate Strategy</p>
-        <p style="font-size: 12px; color: var(--text-dim);">Chairman BCG Henderson Institute.</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="avatar" style="background: linear-gradient(135deg, #ba68c8, #8e24aa); color: white;">AP</div>
-        <h3 style="color: var(--text-white); font-size: 18px;">Sandy Pentland</h3>
-        <p style="color: #ba68c8; font-size: 14px; margin-bottom: 8px;">Advisor: AI & Social Physics</p>
-        <p style="font-size: 12px; color: var(--text-dim);">MIT Media Lab / Stanford HAI. AI leader.</p>
-      </div>
-      <div class="card" style="text-align: center;">
-        <div class="avatar" style="background: linear-gradient(135deg, #ef5350, #e53935); color: white;">JSB</div>
-        <h3 style="color: var(--text-white); font-size: 18px;">John Seely Brown</h3>
-        <p style="color: #ef5350; font-size: 14px; margin-bottom: 8px;">Board Member & Advisor</p>
-        <p style="font-size: 12px; color: var(--text-dim);">Co-founder Common Good AI. Former Chief Scientist Xerox.</p>
-      </div>
-    </div>
-    <span class="slide-number">15</span>
-  </section>
-
-  <!-- Slide 16: Future of Intelligence -->
-  <section class="slide slide-content">
-    <h1>The Future of Intelligence is Collective</h1>
-    
-    <blockquote style="font-size: 20px; font-style: italic; color: var(--text-gray); margin: 40px 0; padding: 24px; border-left: 4px solid var(--accent-cyan);">
-      "Human-AI collaboration is not a temporary bridge to full automation—it is the enduring foundation for trustworthy intelligence in complex domains."
-    </blockquote>
-    
-    <div style="text-align: center; margin: 60px 0;">
-      <p style="font-size: 18px; color: var(--accent-cyan); margin-bottom: 24px;">The human cognition layer that AI has been missing</p>
       
-      <div style="display: flex; justify-content: center; align-items: center; gap: 24px; font-size: 40px;">
-        <div style="text-align: center;">
-          <span>🏢</span>
-          <p style="font-size: 14px; color: var(--text-gray);">Enterprise</p>
+      <div class="stats-grid">
+        <div class="card stat-card fade-up stagger-1">
+          <div class="stat-value">$1.2T</div>
+          <div class="stat-label">Primary Market</div>
+          <div class="stat-desc">Global Management Consulting</div>
         </div>
-        <span style="color: var(--text-dim);">+</span>
-        <div style="text-align: center;">
-          <span>🏛️</span>
-          <p style="font-size: 14px; color: var(--text-gray);">Government</p>
+        <div class="card stat-card fade-up stagger-2">
+          <div class="stat-value">$50B</div>
+          <div class="stat-label">Decision Intelligence</div>
+          <div class="stat-desc">25% CAGR to 2030</div>
         </div>
-        <span style="color: var(--text-dim);">+</span>
-        <div style="text-align: center;">
-          <span>🌍</span>
-          <p style="font-size: 14px; color: var(--text-gray);">Society</p>
+        <div class="card stat-card fade-up stagger-3">
+          <div class="stat-value">$180B</div>
+          <div class="stat-label">Secondary Market</div>
+          <div class="stat-desc">Enterprise Collaboration</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology Section -->
+  <section class="section tech-section" id="technology">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Defensible Technology Advantage</p>
+        <h2 class="section-title">Patents & Algorithmic Innovation</h2>
+      </div>
+      
+      <div style="text-align: center;" class="fade-up">
+        <div class="tech-badge">
+          <span class="tech-badge-icon">📜</span>
+          <span class="tech-badge-text">4 Substantial Patents (2022-2023)</span>
         </div>
       </div>
       
-      <div style="margin-top: 40px;">
-        <p style="font-size: 24px; font-weight: bold; color: var(--accent-cyan);">CrowdSmart</p>
-        <p style="font-size: 16px; color: var(--text-gray);">Generative Collective Intelligence</p>
+      <div class="tech-grid">
+        <div class="card tech-card fade-up stagger-1">
+          <ul>
+            <li><strong>Spectral Relevance Ranking</strong></li>
+            <li><strong>Bayesian Beta-Sampling</strong></li>
+            <li><strong>Markov Blanket Modeling</strong></li>
+            <li><strong>Perron-Frobenius & PageRank</strong></li>
+            <li>Optimal convergence properties</li>
+            <li>Context isolation for decisions</li>
+          </ul>
+        </div>
+        <div class="card tech-card fade-up stagger-2">
+          <ul>
+            <li><strong>Semantic Hilbert Space</strong></li>
+            <li><strong>Free Energy Integration</strong></li>
+            <li><strong>Private Language Models</strong></li>
+            <li><strong>Fisher-Rao Information Geometry</strong></li>
+            <li>Collective uncertainty minimization</li>
+            <li>Context-specific LLMs with citations</li>
+          </ul>
+        </div>
       </div>
-      <p>
+      
+      <p class="tech-footer fade-up">50+ years of AI development across all major paradigms</p>
+    </div>
+  </section>
+
+  <!-- Comparison Section -->
+  <section class="section comparison-section">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Competitive Advantage</p>
+        <h2 class="section-title">The Gateway to Trusted, Grounded AI</h2>
+        <p style="font-size: 24px; color: var(--text-gray); margin-bottom: 32px; max-width: 700px;">
+          <center>Over 10 years of research, development and deployment. <br> CrowdSmart has refined and patented an architecture for integrating the collective cognitive power of human subject matter experts with AI models and AI Agents. <br>The technology provides a tested scalable system for a next generation socially integrated AI.</center>
+        </p>
+      </div>
+      
+      <div class="comparison-grid">
+        <div class="card comparison-card comparison-card-positive fade-up stagger-1">
+          <h3>With GCI Organizations Will:</h3>
+          <ul>
+            <li>Generate private, contextualized LLMs</li>
+            <li>Build persistent decision frameworks</li>
+            <li>Create unique competitive advantage</li>
+            <li>Foster cultures of trust and loyalty</li>
+          </ul>
+        </div>
+        <div class="card comparison-card comparison-card-negative fade-up stagger-2">
+          <h3>Without GCI Organizations Will:</h3>
+          <ul>
+            <li>Risk failed AI Agent use damaging trust</li>
+            <li>Rely on generic LLMs everyone uses</li>
+            <li>Lose institutional knowledge</li>
+            <li>Become commoditized</li>
+          </ul>
+        </div>
+      </div>
+      
+      <table class="comparison-table fade-up">
+        <tr>
+          <th>Capability</th>
+          <th>GCI/CrowdSmart</th>
+          <th>Traditional LLMs</th>
+        </tr>
+        <tr>
+          <td>Knowledge Acquisition</td>
+          <td class="positive">✓ Scalable</td>
+          <td class="negative">Limited</td>
+        </tr>
+        <tr>
+          <td>Coordinating Convergence</td>
+          <td class="positive">O(n log n)</td>
+          <td class="negative">O(n²)</td>
+        </tr>
+        <tr>
+          <td>Grounding (Alignment)</td>
+          <td class="positive">✓ Automated</td>
+          <td class="negative">Manual</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- Business Model Section -->
+  <section class="section business-section">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Revenue Strategy</p>
+        <h2 class="section-title">Two Revenue Engines</h2>
+      </div>
+      
+      <div class="business-grid">
+        <div class="card business-card business-card-primary fade-up stagger-1">
+          <p class="business-label">Primary Market</p>
+          <h3>Enterprise Knowledge Discovery</h3>
+          <p>Replacing traditional consulting at 10-20x lower cost</p>
+          <ul>
+            <li>Strategic Decision Support ($50K-200K)</li>
+            <li>Due Diligence & Investment Analysis</li>
+            <li>M&A Integration & Organizational IQ</li>
+            <li>Forecasting: Supply Chain, Sales, Market</li>
+            <li>Policy Impact Assessment</li>
+          </ul>
+        </div>
+        <div class="card business-card business-card-secondary fade-up stagger-2">
+          <p class="business-label">API Market</p>
+          <h3>Collective Reasoning API</h3>
+          <p>The "Stripe for collective intelligence"</p>
+          <ul>
+            <li>Usage-based pricing ($0.10-1.00 per event)</li>
+            <li>Innovation & Product Management</li>
+            <li>Enterprise Collaboration (Slack, Teams)</li>
+            <li>Customer Co-creation & Research</li>
+            <li>Democratic Governance & Civic Tech</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="business-stats">
+        <div class="card business-stat fade-up stagger-1">
+          <div class="business-stat-value">90%+</div>
+          <div class="business-stat-label">Gross Margin</div>
+        </div>
+        <div class="card business-stat fade-up stagger-2">
+          <div class="business-stat-value">Land & Expand</div>
+          <div class="business-stat-label">GTM Motion</div>
+        </div>
+        <div class="card business-stat fade-up stagger-3">
+          <div class="business-stat-value">Network Effects</div>
+          <div class="business-stat-label">More users = better models</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GTM Section -->
+  <section class="section gtm-section">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Roadmap</p>
+        <h2 class="section-title">Go-To-Market Strategy</h2>
+      </div>
+      
+      <div class="gtm-phases">
+        <div class="gtm-phase fade-up stagger-1">
+          <p class="gtm-phase-label">NOW → 6 MO</p>
+          <div class="card">
+            <h3>Phase 1: Prove & Partner</h3>
+            <ul>
+              <li>5-10 enterprise pilots</li>
+              <li>Partner with Tier 2 consulting</li>
+              <li>Early API access</li>
+            </ul>
+          </div>
+        </div>
+        <div class="gtm-phase fade-up stagger-2">
+          <p class="gtm-phase-label">6-18 MO</p>
+          <div class="card">
+            <h3>Phase 2: Scale & Integrate</h3>
+            <ul>
+              <li>Expand verticals</li>
+              <li>Launch self-serve API</li>
+              <li>Integrate Slack, Teams</li>
+            </ul>
+          </div>
+        </div>
+        <div class="gtm-phase fade-up stagger-3">
+          <p class="gtm-phase-label">18-36 MO</p>
+          <div class="card">
+            <h3>Phase 3: Platform Dominance</h3>
+            <ul>
+              <li>Collective reasoning layer</li>
+              <li>Domain marketplace</li>
+              <li>International expansion</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <h3 class="traction-title fade-up">Proven Traction</h3>
+      <div class="traction-grid">
+        <div class="card traction-card fade-up stagger-1">
+          <h4>Investing in Startups</h4>
+          <p>Demonstrated GCI accuracy</p>
+        </div>
+        <div class="card traction-card fade-up stagger-2">
+          <h4>Corporate Transformation</h4>
+          <p>$1B Financial Services</p>
+        </div>
+        <div class="card traction-card fade-up stagger-3">
+          <h4>Defense Decision-Making</h4>
+          <p>NATO Innovation Hub</p>
+        </div>
+        <div class="card traction-card fade-up stagger-4">
+          <h4>Brand Innovation</h4>
+          <p>Guitar Center</p>
+        </div>
+        <div class="card traction-card fade-up stagger-5">
+          <h4>Community Healthcare</h4>
+          <p>Ontario Healthcare System</p>
+        </div>
+        <div class="card traction-card fade-up stagger-6">
+          <h4>Market Forecasting</h4>
+          <p>Foundation for Study of Cycles</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team-section" id="team">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Leadership</p>
+        <h2 class="section-title">World-Class Team</h2>
+      </div>
+      
+      <div class="team-grid">
+        <div class="card team-card fade-up stagger-1">
+          <div class="team-avatar">TK</div>
+          <h3>Tom Kehler</h3>
+          <p class="role">Chief Scientist & Co-Founder</p>
+          <p class="bio">50+ yrs AI. CEO IntelliCorp (first AI IPO). 4 patents. PhD Drexel.</p>
+        </div>
+        <div class="card team-card fade-up stagger-2">
+          <div class="team-avatar">KP</div>
+          <h3>Kim Polese</h3>
+          <p class="role">Chairman & Co-Founder</p>
+          <p class="bio">Former CEO Marimba. Led Java product team at Sun.</p>
+        </div>
+        <div class="card team-card fade-up stagger-3">
+          <div class="team-avatar">SP</div>
+          <h3>Scott Page</h3>
+          <p class="role">Advisor: Collective Intelligence</p>
+          <p class="bio">U of Michigan. Author "The Diversity Bonus".</p>
+        </div>
+        <div class="card team-card fade-up stagger-4">
+          <div class="team-avatar">MR</div>
+          <h3>Martin Reeves</h3>
+          <p class="role">Advisor: Corporate Strategy</p>
+          <p class="bio">Chairman BCG Henderson Institute.</p>
+        </div>
+        <div class="card team-card fade-up stagger-5">
+          <div class="team-avatar">AP</div>
+          <h3>Sandy Pentland</h3>
+          <p class="role">Advisor: AI & Social Physics</p>
+          <p class="bio">MIT Media Lab / Stanford HAI. AI leader.</p>
+        </div>
+        <div class="card team-card fade-up stagger-6">
+          <div class="team-avatar">JSB</div>
+          <h3>John Seely Brown</h3>
+          <p class="role">Board Member & Advisor</p>
+          <p class="bio">Co-founder Common Good AI. Former Chief Scientist Xerox.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Resources Section -->
+  <section class="section resources-section" id="resources">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Resources</p>
+        <h2 class="section-title">Resources</h2>
+      </div>
+      <p><center>
         For more information, engage with our knowledge agents and visit our resource center.<br>
         <a href=http://localhost:3000/agent/d4a29c04-96b0-4e45-868c-cbb268e5a476 style="color: #00fff2; font-size: 20px;"">  Resource Center. Knowledge Agent</a>
       <br> There you will find videos as well as other resources.
-      </p>
+      </center>
     </div>
-    <span class="slide-number">16</span>
   </section>
 
-  <!-- Slide 17: Closing -->
-  <section class="slide slide-title">
-    <div style="position: relative; z-index: 1;">
-      <h1 style="font-size: 56px; margin-bottom: 0;">CrowdSmart:</h1>
-      <h1 style="font-size: 56px; margin-top: 0;">Supercharging</h1>
-      <h1 style="font-size: 56px; margin-top: 0;">Human+AI Collaboration</h1>
+  <!-- Vision Section -->
+  <section class="section vision-section" id="contact">
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <p class="section-label">Vision</p>
+        <h2 class="section-title">The Future of Intelligence is Collective</h2>
+      </div>
+      
+      <blockquote class="vision-quote fade-up">
+        "Human-AI collaboration is not a temporary bridge to full automation—it is the enduring foundation for trustworthy intelligence in complex domains."
+      </blockquote>
+      
+      <p class="vision-tagline fade-up">The human cognition layer that AI has been missing</p>
+      
+      <div class="vision-pillars fade-up">
+        <div class="vision-pillar">
+          <div class="vision-pillar-icon">🏢</div>
+          <div class="vision-pillar-label">Enterprise</div>
+        </div>
+        <span class="vision-plus">+</span>
+        <div class="vision-pillar">
+          <div class="vision-pillar-icon">🏛️</div>
+          <div class="vision-pillar-label">Government</div>
+        </div>
+        <span class="vision-plus">+</span>
+        <div class="vision-pillar">
+          <div class="vision-pillar-icon">🌍</div>
+          <div class="vision-pillar-label">Society</div>
+        </div>
+      </div>
+      
+      <div class="vision-brand fade-up">
+        <h2>CrowdSmart</h2>
+        <p>Generative Collective Intelligence</p>
+      </div>
+      
+      <div style="margin-top: 48px;" class="fade-up">
+        <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;">
+          For more information, engage with our knowledge agents and visit our resource center.<br>
+          There you will find videos as well as other resources.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://csgci.vercel.app/resources" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Resource Center</a>
+          <a href="https://csgci.vercel.app/agent/d4a29c04-96b0-4e45-868c-cbb268e5a476" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Knowledge Agent</a>
+          <a href="mailto:contact@crowdsmart.ai" class="btn btn-primary">Get In Touch</a>
+        </div>
+      </div>
     </div>
-    <span class="slide-number">17</span>
   </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-icon">🧠</div>
+        <div class="footer-brand-text">
+          <h3>CS2.0</h3>
+          <p>Trusted Intelligence</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#technology">Technology</a>
+        <a href="#market">Market</a>
+        <a href="#resources">Resources</a>
+        <a href="#team">Team</a>
+      </div>
+      <p class="footer-copyright">© 2025 CrowdSmart. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for fade animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
