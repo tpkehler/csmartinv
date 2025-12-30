@@ -248,6 +248,26 @@
       font-weight: 300;
     }
 
+    .hero-tldr-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 32px 40px;
+      backdrop-filter: blur(20px);
+      margin: 48px 0;
+      text-align: left;
+      max-width: 900px;
+      margin-left: 0;
+      margin-right: auto;
+    }
+
+    .tldr-content {
+      font-size: 18px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
     .hero-cta {
       display: flex;
       gap: 16px;
@@ -372,6 +392,54 @@
     
     .problem-section {
       background: linear-gradient(180deg, var(--bg-deep) 0%, var(--bg-primary) 100%);
+    }
+
+    .problem-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .problem-image-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .problem-illustration {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .problem-text-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .problem-text-intro {
+      font-size: 20px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .problem-text-body {
+      font-size: 18px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    @media (max-width: 968px) {
+      .problem-content-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
     }
 
     .problem-grid {
@@ -1470,8 +1538,13 @@
         <span class="hero-badge-dot"></span>
         CS2.0 2026
       </div>
-      <h1 class="hero-title">Trusted Intelligence</h1>
+      <h1 class="hero-title">Trusted Decision Intelligence</h1>
       <p class="hero-subtitle">Integrating Human and AI Reasoning through <br> Generative Collective Intelligence</p>
+  
+      <div class="hero-tldr-card">
+        <p class="tldr-content">The next generation of is about world models — systems that understand how the world works and can plan under uncertainty. CSmart is a decision-intelligence platform grounded in world models and the Free Energy Principle — applied where they actually matter: human decisions. Instead of learning a world model implicitly from data alone, CSmart constructs explicit world models by orchestrating human reasoning with AI. These models represent beliefs, causal structure, and uncertainty — and they're continuously updated based on real outcomes. This allows organizations to plan, reason, and adapt under uncertainty in a way LLMs and traditional analytics can't. Think of CSmart as a practical, deployable instantiation of world-model AI for decision making — where beliefs drive action, uncertainty is reduced over time, and results close the loop.</p>
+      </div>
+  
       <div class="hero-cta">
         <a href="#solution" class="btn btn-primary">Explore Solution</a>
         <a href="#contact" class="btn btn-secondary">Request Demo</a>
@@ -1518,24 +1591,26 @@
     </div>
   </section>
   <section class="section problem-section">
-    <h1>  The real problem is the challenge of converging on shared understanding. <br> The cost of coordination and alignment grows with the number of people involved.</h1>
-    <h2 style="color: var(--text-gray); font-weight: normal;"><br>Communication complexity exponentially scales. 20 people requires managing 190 lines of communication.</h2>
-    
-    <div class="image-placeholder" style="min-height: 375px; max-width: 100%; display: flex; align-items: center; justify-content: flex-start; padding: 40px;">
-        <img src="assets/images/exponential-complexity.png" alt="Exponential Complexity Graph - interconnected network of people" style="width: 40%; height: 40%; object-fit: cover; border-radius: 4px;"> 
-        <div style="padding-left: 35px;">
-          <p style="font-size: 24px; color: var(--text-dim);">
-            We use threaded conversations for deliberations and discussions today. <br> These methods do not help converge on what is of shared importance.<br><br>
-          </p>
-      <h2>  The unsolved and unpoken economic issue is coordination and alignement among human teams, human teams working with AI Agents and  AI agents. <br><br>In order to create trust and ground AI models in collecitve intelligence of experts and human teams, we need to manage the process of everyone listing and reviewing each other's contributions. </h1><br>
-     
-      <h2>
-          An orchestrating AI Agent is needed that learns and guides deliberative conversations to a conclusive and shared understanding. <br><br>
-          Human facilitators do this well but they too are limited by the complexity of the conversation and the number of people involved. <br>
-          <br> 
-          An AI orchestrator can do this by listening, learning and analyzing the conversation to guide the conversation to a conclusive and shared understanding.
-        </h2>
-    
+    <div class="section-inner">
+      <div class="section-header fade-up">
+        <h2 class="section-title">The real problem:<br>The challenge of converging on shared understanding</h2>
+        <p class="section-desc">The cost of coordination and alignment grows with the number of people involved. Communication complexity exponentially scales. 20 people requires managing 190 lines of communication.</p>
+      </div>
+      
+      <div class="problem-content-grid fade-up">
+        <div class="problem-image-container">
+          <img src="assets/images/exponential-complexity.png" alt="Exponential Complexity Graph - interconnected network of people" class="problem-illustration">
+        </div>
+        <div class="problem-text-content">
+          <p class="problem-text-intro">We use threaded conversations for deliberations and discussions today. These methods do not help converge on what is of shared importance.</p>
+          
+          <p class="problem-text-body">The unsolved and unspoken economic issue is coordination and alignment among human teams, human teams working with AI Agents and AI agents. In order to create trust and ground AI models in collective intelligence of experts and human teams, we need to manage the process of everyone listing and reviewing each other's contributions.</p>
+          
+          <p class="problem-text-body">An orchestrating AI Agent is needed that learns and guides deliberative conversations to a conclusive and shared understanding. Human facilitators do this well but they too are limited by the complexity of the conversation and the number of people involved.</p>
+          
+          <p class="problem-text-body">An AI orchestrator can do this by listening, learning and analyzing the conversation to guide the conversation to a conclusive and shared understanding.</p>
+        </div>
+      </div>
     </div>
   </section>
 
